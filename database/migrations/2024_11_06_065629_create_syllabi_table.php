@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('syllabi', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('subject_id')->constrained();
+            $table->foreignId('class_id')->constrained();
+            $table->string('title');
+            $table->text('content');
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }

@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('fees', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id')->constrained();
+            $table->string('fee_type');
+            $table->decimal('amount', 10, 2);
+            $table->date('due_date');
+            $table->enum('status', ['paid', 'unpaid', 'partial']);
             $table->timestamps();
         });
     }
