@@ -21,7 +21,7 @@ class RoleMiddleware
         }
 
         $user = Auth::user();
-        
+
         if (in_array($user->role, $roles)) {
             return $next($request);
         }

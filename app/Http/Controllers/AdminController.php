@@ -17,7 +17,7 @@ class AdminController extends Controller
     {
         $studentCount = Student::count();
         $teacherCount = Teacher::count();
-        
+
         return view('admin.dashboard', compact('studentCount', 'teacherCount'));
     }
 
