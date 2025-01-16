@@ -24,6 +24,7 @@ use App\Http\Controllers\SchoolSessionController;
 use App\Http\Controllers\AcademicSettingController;
 use App\Http\Controllers\AssignedTeacherController;
 use App\Http\Controllers\Auth\UpdatePasswordController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,11 +39,15 @@ use App\Http\Controllers\Auth\UpdatePasswordController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('guest')->name('welcome');
 
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::prefix('school')->name('school.')->group(function () {
         Route::post('session/create', [SchoolSessionController::class, 'store'])->name('session.store');
